@@ -20,12 +20,12 @@ public class SearchController {
       //COMPLETAR
         return "Search/lista2";
     }
-
+    /*
     @PostMapping("/busqueda")
     public String buscar (){
 
         //COMPLETAR
-    }
+    }*/
 
     @GetMapping(value = "/Filtro2")
     public String cantidadEmpleadosPorPais (){

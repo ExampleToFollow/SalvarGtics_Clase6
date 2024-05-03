@@ -54,15 +54,15 @@ public class EmployeeController {
             return "employee/Frm";
         }else {
 
-            if (employees.getEmployeeId() == 0) {
+            if (employees.getId() == 0) {
                 attr.addFlashAttribute("msg", "Empleado creado exitosamente");
-                employees.setHireDate(new Date());
+                employees.setHireDate(new Date().toInstant());
                 employeesRepository.save(employees);
                 return "redirect:/employee";
             } else {
 
                 try {
-                    employees.setHireDate(new SimpleDateFormat("yyyy-MM-dd").parse(fechaContrato));
+                    employees.setHireDate(new SimpleDateFormat("yyyy-MM-dd").parse(fechaContrato).toInstant());
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -73,13 +73,13 @@ public class EmployeeController {
             }
         }
     }
-
+/*
     @GetMapping("/edit")
     public String editarEmployee() {
 
         //COMPLETAR
     }
-
+*/
 
     @GetMapping("/delete")
     public String borrarEmpleado(Model model,
@@ -95,11 +95,12 @@ public class EmployeeController {
         return "redirect:/employee";
 
     }
-
+/*
     @PostMapping("/search")
     public String buscar (){
 
         //COMPLETAR
     }
+    */
 
 }
