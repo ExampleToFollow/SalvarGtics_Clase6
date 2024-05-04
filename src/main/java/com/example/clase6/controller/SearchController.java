@@ -1,12 +1,21 @@
 package com.example.clase6.controller;
 
 
+import com.example.clase6.Dto.EmployeeDepartmentDto;
+import com.example.clase6.repository.EmployeesRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/Search")
 public class SearchController {
+
+    @Autowired
+    EmployeesRepository employeesRepository;
 
 
     @GetMapping(value = {"","/"})
@@ -35,8 +44,11 @@ public class SearchController {
     }
 
     @GetMapping("/listar")
-    public String listarEmpleadoDep() {
-        //COMPLETAR
+    public String listarEmpleadoDep(@RequestParam("idDepartment") int idDepartment, Model model) {
+        List<EmployeeDepartmentDto> listaDepartamentosEmpleados = employeesRepository.listarEmpleadoDepartamento(idDepartment);
+        model.addAttribute("listaDepartamentosEmpleados", listaDepartamentosEmpleados);
+
+
         return "/Search/lista3";
 
     }
